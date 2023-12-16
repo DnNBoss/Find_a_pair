@@ -1,11 +1,34 @@
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".card"),
+timeTag = document.querySelector(".time b"),
+flipsTag = document.querySelector(".flips b"),
+refreshButton = document.querySelector(".statistics button");
 
+let maxTime = 30;
+let timeLeft = maxTime;
+let flips = 0;
 let matchedCard = 0;
 let disableDeck = false;
-let cardOne, cardTwo;
+let isPlaying = false;
+let cardOne, cardTwo, timer;
+
+function initTimer() {
+    if(timeLeft <= 0) {
+        return clearInterval(timer);
+    }
+
+    timeLeft--;
+    timeTag.innerText = timeLeft;
+}
 
 function flipCard({target: clickedCard}) {
-    if(clickedCard !== cardOne && !disableDeck) {
+    if(!isPlaying) {
+        isPlaying = true;
+        timer = setInterval(initTimer, 1000);
+    }
+    
+    if(clickedCard !== cardOne && !disableDeck && timeLeft > 0) {
+        flips++;
+        flipsTag.innerText = flips;
         clickedCard.classList.add("flip");
 
         if(!cardOne) {
@@ -23,6 +46,11 @@ function flipCard({target: clickedCard}) {
 function matchCards(firstImage, secondImage) {
     if(firstImage === secondImage) {
         matchedCard++;
+        
+        if(matchedCard == 6 && timeLeft > 0) {
+            return clearInterval(timer);
+        }
+
         cardOne.removeEventListener("click", flipCard);
         cardTwo.removeEventListener("click", flipCard);
         cardOne = cardTwo = "";
@@ -44,9 +72,13 @@ function matchCards(firstImage, secondImage) {
 }
 
 function shuffleCard() {
-    matchedCard = 0;
+    timeLeft = maxTime;
+    flips = matchedCard = 0;
     cardOne = cardTwo = "";
-    disableDeck = false;
+    clearInterval(timer);
+    timeTag.innerText = timeLeft;
+    flipsTag.innerText = flips;
+    disableDeck = isPlaying = false;
 
     let arrayOfNumbers = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
     arrayOfNumbers.sort(() => Math.random() > 0.5 ? 1 : -1);
@@ -54,14 +86,18 @@ function shuffleCard() {
     cards.forEach((card, index) => {
         card.classList.remove("flip");
         let imageTag = card.querySelector(".front-view img");
+
         setTimeout(() => {
             imageTag.src = `../images/image_${arrayOfNumbers[index]}.png`;
         }, 500);
+
         card.addEventListener("click", flipCard);
     });
 }
 
 shuffleCard();
+
+refreshButton.addEventListener("click", shuffleCard);
 
 cards.forEach(card => {
     card.addEventListener("click", flipCard);
