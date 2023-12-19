@@ -38,7 +38,7 @@ body{
 }
 
 .cards{
-  height: 600px;
+  height: 450px;
   width: 600px;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -110,7 +110,7 @@ body{
 
 .statistics{
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 0 20px;
   border-radius: 7px;
   background: #fff;
@@ -155,9 +155,11 @@ body{
     height: 350px;
     width: 350px;
   }
+
   .card .back-view img{
     max-width: 100%;
   }
+
   .card .front-view img{
     max-width: 100%;
   }
@@ -168,19 +170,23 @@ body{
     height: 300px;
     width: 300px;
   }
+
   .card .front-view img{
     max-width: 100%;
   }
+
   .statistics{
     margin-top: 10px;
     padding: 0 15px;
     height: calc(100% / 4 - 20px);
   }
+
   .statistics p{
     height: 15px;
     font-size: 17px;
     padding-right: 13px;
   }
+
   .statistics button{
     font-size: 13px;
     padding: 5px 10px;
