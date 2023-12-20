@@ -42,8 +42,9 @@ document.addEventListener("DOMContentLoaded", function () {
             let cardTwoImage = cardTwo.querySelector(".front-view img").getAttribute("src");
             matchCards(cardOneImage, cardTwoImage);
         
-            cardOne.querySelector(".view").classList.add("flip");
-            cardTwo.querySelector(".view").classList.add("flip");
+        } else if (clickedCard === cardOne) {
+            clickedCard.classList.remove("flip");
+            cardOne = "";
         }
     }
 
