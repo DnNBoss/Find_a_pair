@@ -12,6 +12,7 @@ p{
 }
 
 body{
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +26,10 @@ body{
 }
 
 .wrapper{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 25px;
   background: #f8f8f8;
   border-radius: 10px;
@@ -49,7 +54,7 @@ body{
   position: relative;
   perspective: 1000px;
   transform-style: preserve-3d;
-  height: calc(100% / 4 - 10px);
+  height: calc(100% / 4 + 6.15%);
   width: calc(100% / 4 - 10px);
 }
 
@@ -57,7 +62,7 @@ body{
   animation: shake 0.35s ease-in-out;
 }
 
-@keyframes shake {
+@keyframes shake{
   0%, 100%{
     transform: translateX(0);
   }
@@ -150,10 +155,19 @@ body{
   background: #6563ff;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 700px){
   .cards{
     height: 350px;
     width: 350px;
+  }
+
+  .cards .card{
+    cursor: pointer;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
   }
 
   .card .back-view img{
@@ -165,10 +179,19 @@ body{
   }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 530px){
   .cards{
     height: 300px;
     width: 300px;
+  }
+
+  .cards .card{
+    cursor: pointer;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
   }
 
   .card .front-view img{
