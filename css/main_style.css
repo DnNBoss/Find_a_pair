@@ -36,7 +36,7 @@ body{
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.cards, .card, .view, .statistics, p{
+.cards, .card, .view, .statistic-container, p{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,7 +113,7 @@ body{
   transform: rotateY(0);
 }
 
-.statistics{
+.statistic-container{
   width: 100%;
   margin-top: 10px;
   padding: 0 20px;
@@ -124,22 +124,22 @@ body{
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.statistics p{
+.statistic-container p{
   font-size: 18px;
   height: 17px;
   padding-right: 18px;
   border-right: 1px solid #ccc;
 }
 
-.statistics p span{
+.statistic-container p span{
   margin-left: 8px;
 }
 
-.statistics p b{
+.statistic-container p b{
   font-weight: 500;
 }
 
-.statistics button{
+.statistic-container button{
   cursor: pointer;
   font-size: 14px;
   color: #6563ff;
@@ -150,7 +150,7 @@ body{
   transition: 0.3s ease;
 }
 
-.statistics button:hover{
+.statistic-container button:hover{
   color: #fff;
   background: #6563ff;
 }
@@ -198,19 +198,19 @@ body{
     max-width: 100%;
   }
 
-  .statistics{
+  .statistic-container{
     margin-top: 10px;
     padding: 0 15px;
     height: calc(100% / 4 - 20px);
   }
 
-  .statistics p{
+  .statistic-container p{
     height: 15px;
     font-size: 17px;
     padding-right: 13px;
   }
 
-  .statistics button{
+  .statistic-container button{
     font-size: 13px;
     padding: 5px 10px;
     border: none;
