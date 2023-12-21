@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cards = document.querySelectorAll(".card"),
     timeTag = document.querySelector(".time b"),
     flipsTag = document.querySelector(".flips b"),
-    refreshButton = document.querySelector(".statistics button");
+    refreshButton = document.getElementById("refreshButton");
 
     let maxTime = 30;
     let timeLeft = maxTime;
