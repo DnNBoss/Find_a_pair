@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a pair</title>
     <link rel="stylesheet" href="../css/main_style.css">
-  </head>
-  <body>
+</head>
+<body>
 
     <div class="wrapper"> 
-      <div class="game-container"> 
-      <ul id="cards" class="cards"></ul> 
-       
-      <div class="statistic-container">
-        <p class="time">Time: <span><b>30</b>s</span></p>
-        <p class="flips">Flips: <span><b>0</b></span></p>
-        <button id="refreshButton">Refresh</button>
-      </div>  
+        <div class="game-container"> 
+            <ul id="cards" class="cards"></ul> 
+
+            <div class="statistic-container">
+                <p class="time">Time: <span><b>30</b>s</span></p>
+                <p class="flips">Flips: <span><b>0</b></span></p>
+                <button id="refreshButton">Refresh</button>
+            </div>  
+        </div>
     </div>
-    
+
+    <div class="leaderboard-container">
+        <div class="leaderboard-header">
+            <h2>Leaderboard</h2>
+        </div>
+
+        <table id="leaderboard"></table>
+    </div>
+
     <script src="../js/cards_script.js"></script>
     <script src="../js/main_script.js"></script>
   
-  </body>
+</body>
 </html>
