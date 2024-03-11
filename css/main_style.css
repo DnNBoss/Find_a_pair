@@ -18,7 +18,9 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: #6563ff;
+  background-image: url(../images/blurred-pop-abstract-with-vivid-primary-colors.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 ::selection {
@@ -38,6 +40,71 @@ body {
     height: 700px;
 } */
 
+/*----------menu----------*/
+.menu-container {
+    position: fixed;
+    top: 20%;
+    left: 7%;
+    height: 60%;
+    width: 15%;
+    margin: 0;
+    background: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    overflow: hidden;
+    transition: height 0.5s, width 0.5s;
+  }
+  
+  .menu-header {
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    background-color: #9290ff;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 25px;
+    font-weight: 600;
+  }
+  
+  .menu-container .menu-content {
+    padding-left: 7px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .menu-content a {
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 4px 11px;
+    transition: 0.5s ease;
+  }
+  
+  .menu-content a:hover {
+    color: #745bce;
+  }
+
+  .menu-container .menu-content a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 400px;
+    height: 1.5px;
+    background-color: #cccccc7c;
+    left: -60px;
+    bottom: 0px;
+  }
+  
+  .menu-container .menu-content a:last-child::after {
+    content: none;
+  }
+/*----------end_menu----------*/
+
 
 
 /*----------wrapper----------*/
@@ -49,7 +116,7 @@ body {
   padding: 25px;
   background: #f8f8f8;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .cards, .card, .view, .statistic-container, p {
@@ -246,15 +313,17 @@ body {
 .leaderboard-container {
     position: fixed;
     display: block;
-    /* opacity: 1; */
-    /* top: 20%; */
+    opacity: 1;
+    top: 20%;
     left: 78.5%;
+    height: 60%;
+    width: 15%;
     margin: 0;
     background: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    /* z-index: 0; */
-    /* overflow: hidden; */
+    z-index: 0;
+    overflow: hidden;
     transition: height 0.5s, width 0.5s;
   }
   
@@ -266,6 +335,8 @@ body {
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-size: 25px;
+    font-weight: 500;
   }
 /*----------end_leaderboard----------*/
 
