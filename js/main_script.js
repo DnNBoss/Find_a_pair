@@ -1,14 +1,16 @@
 import { createCards } from "./cards_script.js";
 import { addPlayerToLeaderboard, updateLeaderboard } from "./leaderboard_script.js";
-    
-createCards();
 
-const cards = document.querySelectorAll(".card"),
-    timeTag = document.querySelector(".time b"),
-    flipsTag = document.querySelector(".flips b"),
-    refreshButton = document.getElementById("refreshButton");
+document.getElementById("startEasyLevel").addEventListener("click", startEasyLevel);
 
-let maxTime = 30,
+var isStartEasyLevel = true;
+
+let cards,
+    timeTag,
+    flipsTag,
+    refreshButton;
+        
+let maxTime,
     timeLeft,
     flips,
     matchedCard,
@@ -18,6 +20,32 @@ let maxTime = 30,
     cardTwo,
     timer;
 
+function startEasyLevel() {
+    if (isStartEasyLevel) {
+        isStartEasyLevel = false;
+        
+        createCards();
+
+        cards = document.querySelectorAll(".card"),
+        timeTag = document.querySelector(".time b"),
+        flipsTag = document.querySelector(".flips b"),
+        refreshButton = document.getElementById("refreshButton");
+
+        maxTime = 30;
+
+        initGame();
+        
+        refreshButton.addEventListener("click", initGame);
+        
+        cards.forEach(card => {
+            card.addEventListener("click", flipCard);
+        });
+    }
+    else {
+        initGame();
+    }
+}
+      
 function initGame() {
     timeLeft = maxTime;
     flips = 0;
@@ -132,11 +160,3 @@ function handleMismatchedCards() {
     disableDeck = false;
     }, 1200);
 }
-
-initGame();
-
-refreshButton.addEventListener("click", initGame);
-
-cards.forEach(card => {
-    card.addEventListener("click", flipCard);
-});
