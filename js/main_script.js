@@ -2,8 +2,12 @@ import { createCards } from "./cards_script.js";
 import { addPlayerToLeaderboard, updateLeaderboard } from "./leaderboard_script.js";
 
 document.getElementById("startEasyLevel").addEventListener("click", startEasyLevel);
+document.getElementById("startMediumLevel").addEventListener("click", startMediumLevel);
+document.getElementById("startHardLevel").addEventListener("click", startHardLevel);
 
-var isStartEasyLevel = true;
+let isStartEasyLevel = true;
+let isStartMediumLevel = true;
+let isStartHardLevel = true;
 
 let cards,
     timeTag,
@@ -11,6 +15,7 @@ let cards,
     refreshButton;
         
 let maxTime,
+    amountOfCards,
     timeLeft,
     flips,
     matchedCard,
@@ -20,11 +25,26 @@ let maxTime,
     cardTwo,
     timer;
 
+let easyLevel = document.getElementById("easy-container");
+let mediumLevel = document.getElementById("medium-container");
+let hardLevel = document.getElementById("hard-container");
+
 function startEasyLevel() {
+    easyLevel.style.order = 1;
+    mediumLevel.style.order = 2;
+    hardLevel.style.order = 2;
+    easyLevel.style.display = "flex";
+    mediumLevel.style.display = "none";
+    hardLevel.style.display = "none";
+
+    amountOfCards = 12;
+
     if (isStartEasyLevel) {
         isStartEasyLevel = false;
+        isStartMediumLevel = true;
+        isStartHardLevel = true;
         
-        createCards();
+        createCards("easy-container", amountOfCards);
 
         cards = document.querySelectorAll(".card"),
         timeTag = document.querySelector(".time b"),
@@ -32,6 +52,80 @@ function startEasyLevel() {
         refreshButton = document.getElementById("refreshButton");
 
         maxTime = 30;
+
+        initGame();
+        
+        refreshButton.addEventListener("click", initGame);
+        
+        cards.forEach(card => {
+            card.addEventListener("click", flipCard);
+        });
+    }
+    else {
+        initGame();
+    }
+}
+
+function startMediumLevel() {
+    easyLevel.style.order = 2;
+    mediumLevel.style.order = 1;
+    hardLevel.style.order = 2;
+    easyLevel.style.display = "none";
+    mediumLevel.style.display = "flex";
+    hardLevel.style.display = "none";
+    
+    amountOfCards = 20;
+
+    if (isStartMediumLevel) {
+        isStartEasyLevel = true;
+        isStartMediumLevel = false;
+        isStartHardLevel = true;     
+        
+        createCards("medium-container", amountOfCards);
+
+        cards = document.querySelectorAll(".card"),
+        timeTag = document.querySelector(".time b"),
+        flipsTag = document.querySelector(".flips b"),
+        refreshButton = document.getElementById("refreshButton");
+
+        maxTime = 45;
+
+        initGame();
+        
+        refreshButton.addEventListener("click", initGame);
+        
+        cards.forEach(card => {
+            card.addEventListener("click", flipCard);
+        });
+    }
+    else {
+        initGame();
+    }
+}
+
+function startHardLevel() {
+    easyLevel.style.order = 2;
+    mediumLevel.style.order = 2;
+    hardLevel.style.order = 1;
+    easyLevel.style.display = "none";
+    mediumLevel.style.display = "none";
+    hardLevel.style.display = "flex";
+    
+    amountOfCards = 30;
+
+    if (isStartHardLevel) {
+        isStartEasyLevel = true;
+        isStartMediumLevel = true;
+        isStartHardLevel = false;
+        
+        createCards("hard-container", amountOfCards);
+
+        cards = document.querySelectorAll(".card"),
+        timeTag = document.querySelector(".time b"),
+        flipsTag = document.querySelector(".flips b"),
+        refreshButton = document.getElementById("refreshButton");
+
+        maxTime = 60;
 
         initGame();
         
@@ -64,13 +158,21 @@ function initGame() {
 }
 
 function shuffleCards() {
-    let arrayOfNumbers = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6];
+    let arrayOfNumbers = createArray();
     arrayOfNumbers.sort(() => Math.random() > 0.5 ? 1 : -1);
 
     cards.forEach((card, index) => {
     resetCard(card, arrayOfNumbers[index]);
     });
 }
+
+function createArray() {
+    let result = [];
+    for (let i = 1; i <= amountOfCards; i++) {
+      result.push(i % (amountOfCards / 2) || (amountOfCards / 2));
+    }
+    return result;
+  }
 
 function resetCard(card, number) {
     card.classList.remove("flip", "shake");
@@ -135,8 +237,8 @@ function handleMatchedCards() {
     matchedCard++;
 
     if (matchedCard === 6 && timeLeft > 0) {
-    var score = 30 - timeLeft;
-    var player = { name: 'n_' + flips, score: score };
+    let score = 30 - timeLeft;
+    let player = { name: 'n_' + flips, score: score };
     addPlayerToLeaderboard(player);
     clearInterval(timer);
     }
