@@ -22,6 +22,9 @@
     </div>
 
     <div class="wrapper"> 
+        <div id="game-label">
+            <p> &#9668; Select level to start the game</p>
+        </div>
         <div class="game-container"> 
             <ul id="easy-container" class="cards"></ul>
             <ul id="medium-container" class="cards"></ul>
@@ -30,6 +33,8 @@
             <div class="statistic-container">
                 <p class="time">Time: <span><b>30</b>s</span></p>
                 <p class="flips">Flips: <span><b>0</b></span></p>
+                <p class="consecutive-guesses">In a row: <span><b>0</b></span></p>
+                
                 <button id="refreshButton">Refresh</button>
             </div>  
         </div>
@@ -41,6 +46,15 @@
         </div>
 
         <table id="leaderboard"></table>
+    </div>
+
+    <div id="win-form" class="win-form">
+        <h1>Congratulations!<br>You win!</h1>
+        <input type="text" id="name-input" placeholder="Enter your name">
+        <div class="buttons-win-form">
+            <button id="confirm-win-form">Ok</button>
+            <button id="cancel-win-form">Cancel</button>
+        </div>
     </div>
 
 </body>
