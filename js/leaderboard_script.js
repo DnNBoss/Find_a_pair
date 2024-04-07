@@ -1,4 +1,4 @@
-var leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+let leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
 
 export function addPlayerToLeaderboard(player) {
     leaderboardData.push(player);
